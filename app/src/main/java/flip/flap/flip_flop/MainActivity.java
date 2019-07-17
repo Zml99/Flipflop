@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.GridView;
 
 public class MainActivity extends Activity {
+
+    public GridView gridView;
+    int[] cards = { R.drawable.animals, R.drawable.pokemon_card, R.drawable.sports, R.drawable.superstars};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +25,9 @@ public class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+        gridView = findViewById(R.id.gridcards);
 
-
+        GridAdapter gridAdapter = new GridAdapter(this, cards);
+        gridView.setAdapter(gridAdapter);
     }
 }
