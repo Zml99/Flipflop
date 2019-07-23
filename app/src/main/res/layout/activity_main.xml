@@ -9,18 +9,17 @@
 
     <GridView
         android:id="@+id/gridcards"
-        android:layout_width="378dp"
-        android:layout_height="698dp"
+        android:layout_width="389dp"
+        android:layout_height="562dp"
         android:layout_marginStart="17dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="17dp"
         android:layout_marginBottom="17dp"
-        android:numColumns="2"
         android:columnWidth="900dp"
         android:gravity="center"
+        android:numColumns="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

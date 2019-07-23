@@ -1,9 +1,11 @@
 package flip.flap.flip_flop;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 public class MainActivity extends Activity {
@@ -29,5 +31,13 @@ public class MainActivity extends Activity {
 
         GridAdapter gridAdapter = new GridAdapter(this, cards);
         gridView.setAdapter(gridAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(view.getContext(), Pop.class);
+                intent.putExtra("Cards", cards[position]);
+                startActivityForResult(intent, 0);
+            }
+        });
     }
 }
