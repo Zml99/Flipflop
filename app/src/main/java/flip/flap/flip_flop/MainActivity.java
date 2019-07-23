@@ -24,57 +24,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        val retrofit: Retrofit = Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+        getPosts();
+
+    }
+
+    private void getPosts() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        ApiService postService = retrofit.create(ApiService.class);
+        Call<List<Post>> call = postService.getPost();
 
-        service = retrofit.create<ApiService>(ApiService::class.java);
+        call.enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                for(Post post : response.body()) {
+                    titles.add(post.getTitle());
+                }
+                arrayAdapter.notifyDataSetInvalidated();
+            }
 
-        getAllPosts();
-        getPostById();
-        editPost();
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+            }
+        });
     }
 
-    fun getAllPosts(){
 
-        service.getAllPosts().enqueue(Object: Callback<List<POST>>{
-            override fun onResponse(call: Call<List<POST>>?, response: Response<List<POST>>?) {
-                val posts = response?.body()
-                Log.i(TAG_LOGS, Gson().toJson(posts))
-            }
-            override fun onFailure(call: Call<List<POST>>?, t: Throwable?) {
-                t?.printStackTrace()
-            }
-        })
-    }
-
-    fun getPostById(){
-        var post: Post? = null
-        service.getPostById(1).enqueue(object: Callback<Post>{
-            override fun onResponse(call: Call<Post>?, response: Response<Post>?) {
-                post = response?.body()
-                Log.i(TAG_LOGS, Gson().toJson(post))
-            }
-            override fun onFailure(call: Call<Post>?, t: Throwable?) {
-                t?.printStackTrace()
-            }
-        })
-    }
-
-    fun editPost(){
-        var post: Post? = Post(1, 1, "Hello k", "body")
-        //Editamos los datos por POST
-        service.editPostById(1, post).enqueue(Object: Callback<POST>{
-            override fun onResponse(call: Call<POST>?, response: Response<POST>?) {
-                post = response?.body()
-                Log.i(TAG_LOGS, Gson().toJson(post))
-            }
-            override fun onFailure(call: Call<Post>?, t: Throwable?) {
-                t?.printStackTrace()
-
-            }
-        })
-    }
 }
 
