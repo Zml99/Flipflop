@@ -10,7 +10,7 @@
     tools:context="flip.flap.flip_flop.Pop">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnjugar"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
