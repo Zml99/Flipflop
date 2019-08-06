@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPosts() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com")
+                .baseUrl("https://my-json-server.typicode.com/adissonfeliz/APIFAKE/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService postService = retrofit.create(ApiService.class);
