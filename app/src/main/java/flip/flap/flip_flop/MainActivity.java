@@ -2,17 +2,12 @@ package flip.flap.flip_flop;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-=======
-import android.util.Log;
 
-import com.google.gson.Gson;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,9 +15,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.POST;
-
->>>>>>> origin/Adisson
 
 public class MainActivity extends Activity {
 
@@ -36,13 +28,13 @@ public class MainActivity extends Activity {
     int[] logos = {R.drawable.animals_png, R.drawable.pokemon_logo, R.drawable.sports_png, R.drawable.superstar};
     String[] color = {"#FFFFFF", "#E51717", "#FFFFFF", "#E5B813"};
 
+    ArrayList<String> titles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
         //To hide navigation bar and notifications bar.
         this.getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -68,10 +60,8 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent, 0);
             }
         });
-=======
-        getPosts();
 
->>>>>>> origin/Adisson
+        getPosts();
     }
 
     private void getPosts() {
@@ -88,7 +78,7 @@ public class MainActivity extends Activity {
                 for(Post post : response.body()) {
                     titles.add(post.getTitle());
                 }
-                arrayAdapter.notifyDataSetInvalidated();
+                //arrayAdapter.notifyDataSetInvalidated();
             }
 
             @Override
