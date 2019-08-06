@@ -35,8 +35,9 @@ public class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         gridView = findViewById(R.id.gridcards);
-
+        //Agregar elementos al gridview
         GridAdapter gridAdapter = new GridAdapter(this, cards);
+        //Asignando el Adapter del Gridview
         gridView.setAdapter(gridAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

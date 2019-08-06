@@ -26,7 +26,7 @@ public class Pop extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.popwindow);
-
+        //Agregar algunos límites como ocultar la barra de notificaciones, navegación y demás.
         this.getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -38,16 +38,17 @@ public class Pop extends Activity {
         rl = findViewById(R.id.popwindow);
         txt = findViewById(R.id.txtText);
         img = findViewById(R.id.imgvLogo);
-
         btnjugar = findViewById(R.id.btnjugar);
+
+        //Traer datos del Main Activity
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         if (b != null){
             rl.setBackgroundResource(b.getInt("Cards"));
-            rl.getBackground().setAlpha(150);
-            txt.setText(b.getString("words"));
-            img.setImageResource(b.getInt("logos"));
-            btnjugar.setBackgroundColor(Color.parseColor(b.getString("btncolors")));
+            rl.getBackground().setAlpha(150); //Agregar "difuminado" a las cartas
+            txt.setText(b.getString("words"));//Texto descriptivo
+            img.setImageResource(b.getInt("logos"));//Logo de carta
+            btnjugar.setBackgroundColor(Color.parseColor(b.getString("btncolors"))); //Agregar color a los botones.
            btnjugar.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -56,7 +57,7 @@ public class Pop extends Activity {
                }
            });
         }
-
+        //Delimitar el tamaño de la ventana de modo que se vea más pequeña que la original
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
