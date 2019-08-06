@@ -27,9 +27,9 @@ public class GameActivity extends AppCompatActivity {
             public void onSensorChanged(SensorEvent sensorEvent){
 
                 if(sensorEvent.values[2] > 0.5f) { // anticlockwise
-                    getWindow().getDecorView().setBackgroundColor(Color.BLUE);
+                    getWindow().getDecorView().setBackgroundColor(Color.CYAN);
                 } else if(sensorEvent.values[2] < -0.5f) { // clockwise
-                    getWindow().getDecorView().setBackgroundColor(Color.YELLOW);}
+                    getWindow().getDecorView().setBackgroundColor(Color.GREEN);}
             }
             @Override
             public void onAccuracyChanged(Sensor sensor, int i){}
