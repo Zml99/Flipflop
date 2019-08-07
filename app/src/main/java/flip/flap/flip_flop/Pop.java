@@ -11,6 +11,8 @@ import android.util.DisplayMetrics;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class Pop extends Activity {
 
     //private ImageView imageView;
@@ -49,10 +51,12 @@ public class Pop extends Activity {
             txt.setText(b.getString("words"));//Texto descriptivo
             img.setImageResource(b.getInt("logos"));//Logo de carta
             btnjugar.setBackgroundColor(Color.parseColor(b.getString("btncolors"))); //Agregar color a los botones.
+            final ArrayList<String> posts = b.getStringArrayList("posts");
            btnjugar.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
                    Intent intent_game = new Intent(Pop.this, GameActivity.class);
+                   intent_game.putExtra("posts" , posts);
                    startActivity(intent_game);
                }
            });

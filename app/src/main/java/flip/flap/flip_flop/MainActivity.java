@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getPosts();
         //To hide navigation bar and notifications bar.
         this.getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -57,16 +57,15 @@ public class MainActivity extends Activity {
                 intent.putExtra("words", text[position]);
                 intent.putExtra("logos", logos[position]);
                 intent.putExtra("btncolors", color[position]);
+                intent.putExtra("posts", titles);
                 startActivityForResult(intent, 0);
             }
         });
-
-        getPosts();
     }
 
     private void getPosts() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com")
+                .baseUrl("https://my-json-server.typicode.com/Zml99/fake_API/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService postService = retrofit.create(ApiService.class);
@@ -74,7 +73,7 @@ public class MainActivity extends Activity {
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+            public void onResponse(Call<List<Post>> call, Response <List<Post>> response) {
                 for(Post post : response.body()) {
                     titles.add(post.getTitle());
                 }
